@@ -1,0 +1,61 @@
+*{
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    text-decoration: none;
+}
+
+body{
+    font-family: calibri;
+    background-color: #706C61;
+    background-image: url('../image/texture.jpg');
+    background-size:300px;
+    color:#aaa;
+    text-shadow: 3px 3px 1px #070606;
+}
+
+h1,h2,h3{
+    font-family:"Old Fenris";
+    margin-bottom:1em;
+    color:#c7bda6;
+    text-shadow: 3px 3px #070606;
+    font-weight: 200;
+}
+
+img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+main {
+    padding: 2em;
+}
+
+#creature_list{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+}
+
+#creature_list article{
+    width: 200px;
+}
+
+/* --------------------------- */
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+article {
+    padding:1em;
+    margin-bottom: 2em;
+    backdrop-filter: blur(1px);
+    border: 1px solid rgb(118, 116, 116, 0.5);
+    position:relative;
+    padding-bottom: 3em;
+    width: 250px;
+}
+

@@ -1,0 +1,118 @@
+@font-face {
+  font-family: "Old Fenris";
+  src: url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.eot");
+  src: url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.woff") format("woff"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ce7ee1905f939d4e0f4cfcb3470c4d4e.svg#Old Fenris") format("svg");
+}
+nav {
+  background-color: #070606;
+  padding: 1em;
+  border-bottom: 1px solid rgb(55, 43, 43);
+  /* box-shadow:0px 5px 10px #413F54; */
+}
+nav ul {
+  display: flex;
+}
+nav li {
+  margin-right: 1em;
+}
+nav a {
+  color: white;
+  font-weight: 900;
+}
+
+/* FORM STYLE */
+form {
+  width: 300px;
+}
+form input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: 0.3s border-color;
+}
+form input:hover {
+  border: 1px solid #aaa;
+}
+form button {
+  /* remove default behavior */
+  appearance: none;
+  -webkit-appearance: none;
+  /* usual styles */
+  padding: 10px;
+  border: none;
+  background-color: #413F54;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 50%;
+  transition: all ease-in-out 0.3s;
+}
+form button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: calibri;
+  background-color: #706C61;
+  background-image: url("../image/texture.jpg");
+  background-size: 300px;
+  color: #aaa;
+  text-shadow: 3px 3px 1px #070606;
+}
+
+h1, h2, h3 {
+  font-family: "Old Fenris";
+  margin-bottom: 1em;
+  color: #c7bda6;
+  text-shadow: 3px 3px #070606;
+  font-weight: 200;
+}
+
+img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+main {
+  padding: 2em;
+}
+
+#creature_list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#creature_list article {
+  width: 200px;
+}
+
+/* --------------------------- */
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+article {
+  padding: 1em;
+  margin-bottom: 2em;
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(118, 116, 116, 0.5);
+  position: relative;
+  padding-bottom: 3em;
+  width: 250px;
+}
+
+/*# sourceMappingURL=style.css.map */
