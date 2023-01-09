@@ -4,22 +4,25 @@ include_once('environnement.php');
 if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = htmlspecialchars($_POST['name']);
     $description = htmlspecialchars($_POST['description']);
-    var_dump($_FILES['image']);
 
     if (isset($_FILES['image'])) {
         // NOM DU FICHIER IMAGE
         $image = $_FILES['image']['name'];
-        // NOM TEMPORAIRE DU FICHIER IMAGE
-        $imageTmp = $_FILES['image']['tmp_name'];
+        $imageTmp = $_FILES['image']['tmp_name']; // NOM TEMPORAIRE DU FICHIER IMAGE
+        $infoImage = pathinfo($image); //TABLEAU QUI DECORTIQUE LE NOM DE FICHIER
+        $extImage = $infoImage['extension']; //EXTENSION 
+        $imageName = $infoImage['filename']; //NOM DU FICHIER SANS L'EXTENSION
+        //GENERATION D'UN NOM DE FICHIER UNIQUE
+        $uniqueName = $imageName . time() . rand(1, 1000) . "." . $extImage;
 
-        move_uploaded_file($imageTmp, 'assets/creatures/' . $image);
+        move_uploaded_file($imageTmp, 'assets/image/creatures/' . $uniqueName);
     }
 
     $request = $bdd->prepare('INSERT INTO creature(nom,description,image)
                               VALUES(?,?,?)');
 
-    $request->execute(array($name, $description, $image));
-    // header('Location: index.php?success=1');
+    $request->execute(array($name, $description, $uniqueName));
+    header('Location: bestiaire.php?success=1');
 }
 ?>
 
@@ -41,13 +44,13 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
 
         <!--Formulaire de Création-->
         <form action="creature_creation.php" method="POST" enctype="multipart/form-data">
-            <label for="name">Modifier le nom :</label>
+            <label for="name">Le nom de la créature:</label>
             <input type="text" id="name" name="name">
 
             <label for="image">Ajouter une image:</label>
             <input type="file" id="image" name="image">
 
-            <label for="description">Modifier la description :</label>
+            <label for="description">La description de la créature:</label>
             <textarea name="description" id="description" cols=" 30" rows="10"></textarea>
             <button>Ajouter</button>
         </form>

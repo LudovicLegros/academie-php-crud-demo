@@ -11,14 +11,14 @@ body{
     background-image: url('../image/texture.jpg');
     background-size:300px;
     color:#aaa;
-    text-shadow: 3px 3px 1px #070606;
+    text-shadow: 3px 3px 1px $noir;
 }
 
 h1,h2,h3{
     font-family:"Old Fenris";
     margin-bottom:1em;
-    color:#c7bda6;
-    text-shadow: 3px 3px #070606;
+    color:$beige;
+    text-shadow: 3px 3px $noir;
     font-weight: 200;
 }
 
@@ -49,13 +49,30 @@ main {
     font-weight: bold;
 }
 
-article {
-    padding:1em;
+.btn,button {
+    color:$beige;
+    padding:4px 7px;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(116,29,29,1) 50%, rgba(0,0,0,1) 100%);;
+    border:3px ridge $beige;
+    border-radius: 3px;
+    display:inline-block;
+    text-shadow: 0px 0px 0px;
+}
+
+.btn-modif{
+    left:1em;
+    position:absolute;
+    bottom:1em;
+}
+
+.btn-suppr{
+    right:1em;
+    position:absolute;
+    bottom:1em;
+}
+
+.btn-add{
     margin-bottom: 2em;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgb(118, 116, 116, 0.5);
-    position:relative;
-    padding-bottom: 3em;
-    width: 250px;
+    font-size: 18px;
 }
 

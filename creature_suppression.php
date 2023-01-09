@@ -7,5 +7,5 @@ $request = $bdd->prepare('DELETE FROM creature
                           WHERE id=?');
 
 $request->execute([$id]);
-header('Location:index.php?success=3');
+header('Location: bestiaire.php?success=3');
 exit();

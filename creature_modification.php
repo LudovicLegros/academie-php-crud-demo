@@ -23,7 +23,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
         'description'   => $description,
         'id'            => $articleId
     ));
-    header('Location: index.php?success=2');
+    header('Location: bestiaire.php?success=2');
 }
 ?>
 

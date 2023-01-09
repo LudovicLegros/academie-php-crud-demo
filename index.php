@@ -1,10 +1,3 @@
-<?php
-include_once('environnement.php');
-
-$request = $bdd->query('SELECT * 
-                        FROM creature');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,38 +13,8 @@ $request = $bdd->query('SELECT *
 <body>
     <?php include_once('nav.php'); ?>
     <main>
-        <h1>Référencement de l'académie de magie</h1>
-        <!-- Gestion des messages de success -->
-        <?php
-        if (isset($_GET['success'])) {
-            $success = $_GET['success'];
-            switch ($success) {
-                case 1:
-                    echo "<p class='success'>Votre créature a bien été ajouté </p>";
-                    break;
-                case 2:
-                    echo "<p class='success'>Votre créature a bien été modifié </p>";
-                    break;
-                case 3:
-                    echo "<p class='success'>Votre créature a bien été supprimé</p>";
-                    break;
-            }
-        }
-        ?>
-
-        <h2>Liste des créatures :</h2>
-        <section id="creature_list">
-            <!-- BOUCLE POUR RECUPERATION DE LA REQUETE -->
-            <?php while ($creature = $request->fetch()) { ?>
-                <article>
-                    <img src="assets/image/creatures/<?= $creature['image']; ?>" alt="image de <?= $creature['nom']; ?>">
-                    <h3> <?= $creature['nom']; ?> </h3>
-                    <p> <?= $creature['description']; ?> </p>
-                    <a class="btn btn-modif" href="<?= 'creature_modification.php?id=' . $creature['id']; ?>">modifier</a>
-                    <a class="btn btn-suppr" href="<?= 'creature_suppression.php?id=' . $creature['id']; ?>">supprimer</a>
-                </article>
-            <?php } ?>
-        </section>
+        <h1>Codex de l'academie de la magie</h1>
+        <h2>Bienvenue visiteur</h2>
     </main>
 </body>
 
