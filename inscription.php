@@ -54,6 +54,8 @@ if (isset($_POST['name']) && (isset($_POST['password'])) && (isset($_POST['passw
 <body>
     <?php include_once('nav.php'); ?>
     <main>
+        <!--ERROR MESSAGES-->
+        <?php  ?>
         <form action="inscription.php" method="POST">
             <label for="name">Votre nom:</label>
             <input type="text" name="name" id="name">
