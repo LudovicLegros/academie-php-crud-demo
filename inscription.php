@@ -28,7 +28,7 @@ if (isset($_POST['name']) && (isset($_POST['password'])) && (isset($_POST['passw
                                             VALUES(?,?)');
 
                 $request->execute(array($username, $passwordCrypt));
-                header('Location:index.php?successsubscribe=1');
+                header('Location:connexion.php?successsubscribe=1');
             } else {
                 header('Location:inscription.php?userexist=1');
             }
@@ -55,7 +55,14 @@ if (isset($_POST['name']) && (isset($_POST['password'])) && (isset($_POST['passw
     <?php include_once('nav.php'); ?>
     <main>
         <!--ERROR MESSAGES-->
-        <?php  ?>
+        <?php
+        if (isset($_GET['userexist'])) {
+            echo '<p class="error">Le nom d\'utilisateur existe déjà! </p>';
+        }
+        if (isset($_GET['passworderror'])) {
+            echo '<p class="error">Les mots de passes ne correspondent pas! </p>';
+        }
+        ?>
         <form action="inscription.php" method="POST">
             <label for="name">Votre nom:</label>
             <input type="text" name="name" id="name">

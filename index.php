@@ -1,3 +1,7 @@
+<?php
+include_once('environnement.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,11 @@
     <?php include_once('nav.php'); ?>
     <main>
         <h1>Codex de l'academie de la magie</h1>
-        <h2>Bienvenue visiteur</h2>
+        <?php if (isset($_SESSION['userName'])) { ?>
+            <h2>Bienvenue <?= $_SESSION['userName'] ?></h2>
+        <?php } else { ?>
+            <h2>Bienvenue visiteur</h2>
+        <?php } ?>
     </main>
 </body>
 

@@ -15,9 +15,16 @@ nav ul {
 nav li {
   margin-right: 1em;
 }
+nav li:nth-child(4) {
+  margin-left: auto;
+}
 nav a {
   color: white;
   font-weight: 900;
+  transition: all 0.3s ease-in-out;
+}
+nav a:hover {
+  color: #c7bda6;
 }
 
 /* FORM STYLE */
@@ -113,6 +120,7 @@ main {
   font-weight: bold;
 }
 
+/* ------BUTTONS----- */
 .btn, button {
   color: #c7bda6;
   padding: 4px 7px;
@@ -121,6 +129,10 @@ main {
   border-radius: 3px;
   display: inline-block;
   text-shadow: 0px 0px 0px;
+  transition: all 0.5s ease-in-out;
+}
+.btn:hover, button:hover {
+  opacity: 0.7;
 }
 
 .btn-modif {
@@ -138,6 +150,17 @@ main {
 .btn-add {
   margin-bottom: 2em;
   font-size: 18px;
+}
+
+/* ------MESSAGES----- */
+.success {
+  color: green;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
 }
 
 article {

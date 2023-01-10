@@ -49,6 +49,8 @@ main {
     font-weight: bold;
 }
 
+/* ------BUTTONS----- */
+
 .btn,button {
     color:$beige;
     padding:4px 7px;
@@ -57,6 +59,11 @@ main {
     border-radius: 3px;
     display:inline-block;
     text-shadow: 0px 0px 0px;
+    transition:all 0.5s ease-in-out;
+
+    &:hover{
+        opacity:0.7;
+    }
 }
 
 .btn-modif{
@@ -76,3 +83,15 @@ main {
     font-size: 18px;
 }
 
+
+/* ------MESSAGES----- */
+
+.success{
+    color:green;
+    text-align: center;
+}
+
+.error{
+    color:red;
+    text-align: center;
+}

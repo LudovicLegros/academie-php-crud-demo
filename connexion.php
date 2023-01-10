@@ -2,15 +2,31 @@
 include_once('environnement.php');
 
 if (isset($_POST['name']) && (isset($_POST['password']))) {
-    $username = htmlspecialchars(trim(strtolower($_POST['name'])));
-    $password = htmlspecialchars(trim($_POST['password']));
-    $passwordCrypt = sha1(sha1('123' . $password . 'kpkoazf1516'));
+    if (!empty($_POST['name']) && (!empty($_POST['password']))) {
+        $username = htmlspecialchars(trim(strtolower($_POST['name'])));
+        $password = htmlspecialchars(trim($_POST['password']));
+        $passwordCrypt = sha1(sha1('123' . $password . 'kpkoazf1516'));
 
-    $request = $bdd->prepare('  INSERT INTO users(username,password)
-                                VALUES(?,?)');
+        $request = $bdd->prepare('SELECT * 
+                                FROM users
+                                WHERE username = ?');
 
-    $request->execute(array($username, $passwordCrypt));
-    header('Location:index.php?successconnect=1');
+        $request->execute(array($username));
+
+        while ($userData = $request->fetch()) {
+            if ($passwordCrypt == $userData['password']) {
+                $_SESSION['userName'] = $userData['username'];
+                $_SESSION['userId'] = $userData['id'];
+                header('Location:index.php?successconnect=1');
+            } else {
+                header('Location:connexion.php?errorconnect=1');
+                //ERREUR MOT DE PASSE FAUX
+            }
+        }
+    } else {
+        header('Location:connexion.php?errorconnect=2');
+        //ERREUR CHAMP VIDE
+    }
 }
 ?>
 
@@ -28,8 +44,15 @@ if (isset($_POST['name']) && (isset($_POST['password']))) {
 
 <body>
     <?php include_once('nav.php'); ?>
+
+    <!--MESSAGES-->
+    <?php
+    if (isset($_GET['successsubscribe'])) {
+        echo '<p class="success">Vous pouvez maintenant vous connecter </p>';
+    }
+    ?>
     <main>
-        <form action="inscription.php" method="POST">
+        <form action="connexion.php" method="POST">
             <label for="name">Votre nom:</label>
             <input type="text" name="name" id="name">
             <label for="password">Votre mot de passe:</label>
