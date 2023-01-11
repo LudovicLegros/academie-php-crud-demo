@@ -70,6 +70,33 @@ form button:hover {
   cursor: pointer;
 }
 
+#home section {
+  display: flex;
+  justify-content: space-around;
+}
+#home section h3 {
+  text-align: center;
+  text-decoration: underline;
+}
+#home section article {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+}
+#home section article:hover {
+  box-shadow: 0px 0px 7px grey;
+}
+#home section .bestiaire_link {
+  background-image: url("../image/monster.jpg");
+}
+#home section .sortilege_link {
+  background-image: url("../image/spell.jpeg");
+  background-color: #c7bda6;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -102,6 +129,14 @@ img {
 
 main {
   padding: 2em;
+}
+
+article {
+  padding: 2em;
+  margin-bottom: 2em;
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(118, 116, 116, 0.5);
+  position: relative;
 }
 
 #creature_list {
@@ -163,14 +198,44 @@ main {
   text-align: center;
 }
 
-article {
-  padding: 2em;
-  margin-bottom: 2em;
-  backdrop-filter: blur(1px);
-  border: 1px solid rgba(118, 116, 116, 0.5);
-  position: relative;
+#creature article {
   padding-bottom: 4em;
   width: 250px;
+}
+#creature .auteur {
+  position: absolute;
+  top: 5px;
+  left: 2em;
+}
+
+#magie article {
+  display: flex;
+  justify-content: flex-start;
+  height: 100px;
+  width: 45vw;
+}
+#magie article img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  margin-right: 2em;
+}
+#magie article div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lumiere {
+  box-shadow: 0px 0px 5px yellow;
+}
+
+.feu {
+  box-shadow: 0px 0px 5px red;
+}
+
+.eau {
+  box-shadow: 0px 0px 5px blue;
 }
 
 /*# sourceMappingURL=style.css.map */

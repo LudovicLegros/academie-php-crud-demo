@@ -1,6 +1,10 @@
 <?php
 include_once('environnement.php');
 
+if (!isset($_SESSION['userName'])) {
+    header('Location:index.php');
+}
+
 if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = htmlspecialchars($_POST['name']);
     $description = htmlspecialchars($_POST['description']);
@@ -18,10 +22,10 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
         move_uploaded_file($imageTmp, 'assets/image/creatures/' . $uniqueName);
     }
 
-    $request = $bdd->prepare('INSERT INTO creature(nom,description,image)
-                              VALUES(?,?,?)');
+    $request = $bdd->prepare('INSERT INTO creature(nom,description,image,users_id)
+                              VALUES(?,?,?,?)');
 
-    $request->execute(array($name, $description, $uniqueName));
+    $request->execute(array($name, $description, $uniqueName, $_SESSION['userId']));
     header('Location: bestiaire.php?success=1');
 }
 ?>
@@ -33,6 +37,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/image/livre-de-sortileges.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Création de créature</title>
 </head>

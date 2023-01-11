@@ -32,6 +32,14 @@ main {
     padding: 2em;
 }
 
+article {
+    padding:2em;
+    margin-bottom: 2em;
+    backdrop-filter: blur(1px);
+    border: 1px solid rgb(118, 116, 116, 0.5);
+    position:relative;
+}
+
 #creature_list{
     display:flex;
     justify-content: space-around;
