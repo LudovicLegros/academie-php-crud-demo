@@ -8,7 +8,15 @@ $rqSelect = $bdd->prepare('SELECT *
                              FROM creature
                              WHERE id = ?');
 $rqSelect->execute(array($articleId));
+//FETCH ALL RECUPERE D'UN COUP TOUTE LES RANGEES DE LA BDD DANS UN TABLEAU A 2 DIMENSIONS
+$values = $rqSelect->fetchAll();
 
+//FOREACH PERMET DE BOUCLER SUR LE TABLEAU PRECEDEMMENT CREE
+foreach ($values as $value) :
+    if ($value['users_id'] != $_SESSION['userId']) {
+        header('Location: index.php');
+    }
+endforeach;
 
 if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = htmlspecialchars($_POST['name']);
@@ -25,6 +33,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     ));
     header('Location: bestiaire.php?success=2');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +55,15 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
 
         <!--Formulaire de modification-->
         <form action="creature_modification.php<?= '?id=' . $articleId ?>" method="POST">
-            <?php while ($value = $rqSelect->fetch()) : ?>
+
+            <!--ON FAIT UN FOREACH PLUTOT QU'UN WHILE CAR LES DONNEES SONT RECUPEREES EN FETCHALL()-->
+            <?php foreach ($values as $value) : ?>
                 <label for="name">Modifier le nom :</label>
                 <input type="text" id="name" name="name" value="<?= $value['nom'] ?>">
 
                 <label for="description">Modifier la description :</label>
                 <textarea name="description" id="description" cols=" 30" rows="10"><?= $value['description'] ?></textarea>
-            <?php endwhile ?>
+            <?php endforeach; ?>
             <button>Modifier</button>
         </form>
     </main>
