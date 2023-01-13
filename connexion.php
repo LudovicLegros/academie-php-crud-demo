@@ -1,12 +1,14 @@
 <?php
 include_once('environnement.php');
 
+// ON VERIFIE SI LES CHAMPS SONT REMPLIS ET PAS VIDE
 if (isset($_POST['name']) && (isset($_POST['password']))) {
     if (!empty($_POST['name']) && (!empty($_POST['password']))) {
         $username = htmlspecialchars(trim(strtolower($_POST['name'])));
         $password = htmlspecialchars(trim($_POST['password']));
         $passwordCrypt = sha1(sha1('123' . $password . 'kpkoazf1516'));
 
+        //VERIFICATION SI LE MOT DE PASSE EST CORRECT
         $request = $bdd->prepare('SELECT * 
                                 FROM users
                                 WHERE username = ?');
@@ -17,6 +19,7 @@ if (isset($_POST['name']) && (isset($_POST['password']))) {
             if ($passwordCrypt == $userData['password']) {
                 $_SESSION['userName'] = $userData['username'];
                 $_SESSION['userId'] = $userData['id'];
+                $_SESSION['role'] = $userData['role'];
                 header('Location:index.php?successconnect=1');
             } else {
                 header('Location:connexion.php?errorconnect=1');

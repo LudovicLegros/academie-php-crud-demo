@@ -13,26 +13,27 @@ $values = $rqSelect->fetchAll();
 
 //FOREACH PERMET DE BOUCLER SUR LE TABLEAU PRECEDEMMENT CREE
 foreach ($values as $value) :
-    if ($value['users_id'] != $_SESSION['userId']) {
+    //ON VERIFIE SI LE USER EST LE CREATION OU SI C'EST L'ADMIN
+    if ($value['users_id'] == $_SESSION['userId'] || $_SESSION['role'] == 'ADMIN') {
+        if (isset($_POST['name']) && isset($_POST['description'])) {
+            $name = htmlspecialchars($_POST['name']);
+            $description = htmlspecialchars($_POST['description']);
+
+            $request = $bdd->prepare('UPDATE creature
+                                SET nom = :nom, description = :description
+                                WHERE id = :id');
+
+            $request->execute(array(
+                'nom'           => $name,
+                'description'   => $description,
+                'id'            => $articleId
+            ));
+            header('Location: bestiaire.php?success=2');
+        }
+    } else {
         header('Location: index.php');
     }
 endforeach;
-
-if (isset($_POST['name']) && isset($_POST['description'])) {
-    $name = htmlspecialchars($_POST['name']);
-    $description = htmlspecialchars($_POST['description']);
-
-    $request = $bdd->prepare('UPDATE creature
-                              SET nom = :nom, description = :description
-                              WHERE id = :id');
-
-    $request->execute(array(
-        'nom'           => $name,
-        'description'   => $description,
-        'id'            => $articleId
-    ));
-    header('Location: bestiaire.php?success=2');
-}
 
 ?>
 

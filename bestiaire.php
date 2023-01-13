@@ -60,7 +60,7 @@ $request = $bdd->query('SELECT *,users.username AS author,  creature.id AS creat
                     <!-- ON VERIFIE SI LA VARIABLE DE SESSION EXISTE-->
                     <?php if (isset($_SESSION['userId'])) : ?>
                         <!-- ON VERIFIE SI L'ID DE L'USER CONNECTE EST LE MEME QUE L'ID_USER DE LA TABLE CREATURE-->
-                        <?php if ($_SESSION['userId'] == $creature['users_id']) : ?>
+                        <?php if ($_SESSION['userId'] == $creature['users_id'] || $_SESSION['role'] == 'ADMIN') : ?>
                             <a class="btn btn-modif" href="<?= 'creature_modification.php?id=' . $creature['creatureid']; ?>">modifier</a>
                             <a class="btn btn-suppr" href="<?= 'creature_suppression.php?id=' . $creature['creatureid']; ?>">supprimer</a>
                         <?php endif ?>

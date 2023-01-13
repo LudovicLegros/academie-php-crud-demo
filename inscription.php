@@ -4,6 +4,7 @@ include_once('environnement.php');
 if (isset($_POST['name']) && (isset($_POST['password'])) && (isset($_POST['passwordConfirm']))) {
     $username = htmlspecialchars(trim(strtolower($_POST['name'])));
     $password = htmlspecialchars(trim($_POST['password']));
+    $role = 'USER';
 
     $passwordConfirm = htmlspecialchars(trim($_POST['passwordConfirm']));
 
@@ -24,10 +25,10 @@ if (isset($_POST['name']) && (isset($_POST['password'])) && (isset($_POST['passw
                 //ENCRYPTAGE DU MOT DE PASSE
                 $passwordCrypt = sha1(sha1('123' . $password . 'kpkoazf1516'));
 
-                $request = $bdd->prepare('  INSERT INTO users(username,password)
-                                            VALUES(?,?)');
+                $request = $bdd->prepare('  INSERT INTO users(username,password,role)
+                                            VALUES(?,?,?)');
 
-                $request->execute(array($username, $passwordCrypt));
+                $request->execute(array($username, $passwordCrypt, $role));
                 header('Location:connexion.php?successsubscribe=1');
             } else {
                 header('Location:inscription.php?userexist=1');
