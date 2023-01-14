@@ -60,7 +60,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ecole
             <label for="image">Ajouter une image:</label>
             <input type="file" id="image" name="image">
 
-            <label for="description">La description de la créature:</label>
+            <label for="description">La description du sort:</label>
             <textarea name="description" id="description" cols=" 30" rows="10"></textarea>
 
             <label for="ecole">Selectionner son école de magie:</label>

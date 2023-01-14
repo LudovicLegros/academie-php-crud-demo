@@ -3,7 +3,7 @@ include_once('environnement.php');
 
 $request = $bdd->query('SELECT *,users.username AS author,  creature.id AS creatureid
                         FROM creature
-                        INNER JOIN users ON users_id = users.id');
+                        LEFT JOIN users ON users_id = users.id');
 ?>
 
 <!DOCTYPE html>

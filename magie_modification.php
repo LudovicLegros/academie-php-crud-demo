@@ -72,7 +72,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ecole
 <body>
     <?php include_once('nav.php'); ?>
     <main>
-        <h1>Modification de la créature</h1>
+        <h1>Modification du sort <?= $values[0]['label'] ?></h1>
 
         <!--Formulaire de modification-->
         <form action="magie_modification.php<?= '?id=' . $articleId ?>" method="POST" enctype="multipart/form-data">
@@ -86,7 +86,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['ecole
                     <label for="image">Ajouter une image:</label>
                     <input type="file" id="image" name="image" value='<?= $value['image'] ?>'>
 
-                    <label for="description">La description de la créature:</label>
+                    <label for="description">La description du sort:</label>
                     <textarea name="description" id="description" cols=" 30" rows="10"><?= $value['description'] ?></textarea>
 
                     <label for="ecole">Selectionner son école de magie:</label>
