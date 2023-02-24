@@ -8,6 +8,9 @@ if (!isset($_SESSION['userName'])) {
 if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = htmlspecialchars($_POST['name']);
     $description = htmlspecialchars($_POST['description']);
+    $caracsChckBox = $_POST['caracs']; //ARRAY DES CHOIX DE CHECKBOX
+    var_dump($caracsChckBox);
+
 
     if (isset($_FILES['image'])) {
         // NOM DU FICHIER IMAGE
@@ -26,7 +29,17 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
                               VALUES(?,?,?,?)');
 
     $request->execute(array($name, $description, $uniqueName, $_SESSION['userId']));
-    header('Location: bestiaire.php?success=1');
+
+    $last_insert_id = $bdd->lastInsertId();
+
+    $requestCaracs = $bdd->prepare('INSERT INTO creature_caracteristique(creature_id,caracteristique_id)
+    VALUES(?,?)');
+
+    foreach ($caracsChckBox as $caracs) {
+        $requestCaracs->execute(array($last_insert_id, $caracs));
+    }
+    // header('Location: bestiaire.php?success=1');
+    // foreach($caracs as $caracsChckBox)
 }
 ?>
 
@@ -57,6 +70,15 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
 
             <label for="description">La description de la créature:</label>
             <textarea name="description" id="description" cols=" 30" rows="10"></textarea>
+
+            <!-- AJOUT CHECKBOX -->
+            <label>La caractéristique:</label>
+            <label for="vol">Vol</label>
+            <input type='checkbox' name='caracs[]' value='1' id='vol'>
+            <label for="court">Court</label>
+            <input type='checkbox' name='caracs[]' value='2' id='court'>
+            <label for="nage">Nage</label>
+            <input type='checkbox' name='caracs[]' value='3' id='nage'>
             <button>Ajouter</button>
         </form>
     </main>
